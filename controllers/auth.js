@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const ErrorResponse = require("../utils/errorResponse");
 
 exports.register = async (req, res, next) => {
   const { username, email, password } = req.body;
@@ -13,36 +14,26 @@ exports.register = async (req, res, next) => {
       user,
     });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      error: error.message,
-    });
+    next(error);
   }
 };
 
 exports.login = async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    res.status(400).json({
-      success: false,
-      error: "please, provide an Email and a password",
-    });
+    return next(
+      new ErrorResponse("Please, provide an Email and a password", 400)
+    );
   }
   try {
     const user = await User.findOne({ email }).select("+password");
     if (!user) {
-      res.status(404).json({
-        success: false,
-        error: "Invalid credentials",
-      });
+      return next(new ErrorResponse("Invalid credentials", 401));
     }
     const isMatch = await user.matchPasswords(password);
 
     if (!isMatch) {
-      res.status(404).json({
-        success: false,
-        error: "Invalid credentials",
-      });
+      return next(new ErrorResponse("Invalid credentials", 401));
     }
 
     res.status(200).json({
@@ -50,10 +41,7 @@ exports.login = async (req, res, next) => {
       token: "asdhgakuystdgyashgdc",
     });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      error: error.message,
-    });
+    next(error);
   }
 };
 
