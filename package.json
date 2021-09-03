@@ -1,11 +1,12 @@
 {
   "name": "advanced-authentication-mern-",
   "version": "1.0.0",
-  "engines": {
-    "node": "6.11.1"
-  },
-  "description": "",
+  "description": "Advanced authentication and authorization system using MERN stack, JWT, and emailing system",
   "main": "server.js",
+  "engines": {
+    "node": "14.17.5",
+    "npm": "14.14"
+  },
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",

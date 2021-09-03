@@ -18,6 +18,7 @@ app.use("/api/private", require("./routes/private"));
 // Error Handler should be the last at middlewares
 app.use(errorHandler);
 
+// serve static assets if in production
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));
   app.get("*", (req, res) => {
