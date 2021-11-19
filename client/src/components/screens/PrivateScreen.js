@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "./PrivateScreen.css";
 
 const PrivateScreen = ({ history }) => {
   const [error, setError] = useState("");
@@ -35,10 +36,14 @@ const PrivateScreen = ({ history }) => {
   return error ? (
     <span className='error-message'>{error}</span>
   ) : (
-    <>
-      <div style={{ background: "green", color: "white" }}>{privateData}</div>
-      <button onClick={logoutHandler}>Logout</button>
-    </>
+    <div className='private-screen'>
+      <div className='private-screen__presentation'>
+        <div className='private-screen__data'>{privateData}</div>
+        <button className='btn' onClick={logoutHandler}>
+          Logout
+        </button>
+      </div>
+    </div>
   );
 };
 
