@@ -1,0 +1,18 @@
+.private-screen {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.private-screen__presentation {
+  width: 380px;
+  padding: 1.5rem;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  background: #fff;
+}
+.private-screen__data {
+  background: lightgreen;
+  color: white;
+}

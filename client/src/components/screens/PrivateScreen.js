@@ -33,7 +33,7 @@ const PrivateScreen = ({ history }) => {
   };
 
   return error ? (
-    <span className="error-message">{error}</span>
+    <span className='error-message'>{error}</span>
   ) : (
     <>
       <div style={{ background: "green", color: "white" }}>{privateData}</div>
